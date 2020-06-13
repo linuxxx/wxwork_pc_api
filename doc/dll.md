@@ -17,7 +17,7 @@ dll文件有三个，分别是WxWorkHelper_3.0.14.1205.dll、WxWorkLoader_x86.dl
 
 	函数定义：
 
-	`BOOL GetUserWxWorkVersion(OUT LPSTR szVersion)`
+	```BOOL GetUserWxWorkVersion(OUT LPSTR szVersion)```
 
 	传一个ANSI字符串缓冲区的指针，长度30即可， 这个函数可以先获取当前用户电脑上安装的微信版本，然后判断我们的dll是否支持，如果不支持就提示用户下载我们支持的版本。
 
@@ -27,7 +27,7 @@ dll文件有三个，分别是WxWorkHelper_3.0.14.1205.dll、WxWorkLoader_x86.dl
 
 	函数定义:
 	
-    `BOOL UseUtf8();`
+    ```BOOL UseUtf8()```
 	
 	
 3. InitWxWorkSocket
@@ -36,21 +36,21 @@ dll文件有三个，分别是WxWorkHelper_3.0.14.1205.dll、WxWorkLoader_x86.dl
 
 	函数定义：
 
-	`BOOL InitWxWorkSocket(IN DWORD dwConnectCallback, IN DWORD dwRecvCallback, IN DWORD dwCloseCallback)`
+	```BOOL InitWxWorkSocket(IN DWORD dwConnectCallback, IN DWORD dwRecvCallback, IN DWORD dwCloseCallback)```
 
 	其中dwConnectCallback是一个函数指针类型, 在有新客户端加入时调用，结构如下：
 
-		`void  MyConnectCallback(int iClientId)`
+		```void  MyConnectCallback(int iClientId)```
 
         传入的一个参数是socket的客户ID,返回值为空 
 
 	dwRecvCallback是一个函数指针类型,在接收到新消息时调用，结构如下：
 
-		`void  MyRecvCallback(int iClientId, char* szJsonData, int iLen)` 
+		```void  MyRecvCallback(int iClientId, char* szJsonData, int iLen)```
 
 	dwCloseCallback是一个函数指针类型，在客户端退出时调用，结果如下:
 
-		`void  MyCloseCallback(int iClientId)`
+		```void  MyCloseCallback(int iClientId)```
 	
 4. InjectWxWork
 
@@ -58,7 +58,7 @@ dll文件有三个，分别是WxWorkHelper_3.0.14.1205.dll、WxWorkLoader_x86.dl
 	
     函数定义：
 	
-    `DWORD  InjectWxWork(IN LPCSTR szDllPath，IN LPCSTR szWxWorkExePath);`
+    ```DWORD  InjectWxWork(IN LPCSTR szDllPath，IN LPCSTR szWxWorkExePath)```
 
 
 	如果需要一个软件，管理多个企业微信，多次调用这个函数实现，通过socket回调管理客户端
@@ -68,7 +68,7 @@ dll文件有三个，分别是WxWorkHelper_3.0.14.1205.dll、WxWorkLoader_x86.dl
 
 	函数定义：
 	
-    `DWORD InjectWxWorkPid(IN DWORD dwPid, IN LPCSTR szDllPath)`
+    ```DWORD InjectWxWorkPid(IN DWORD dwPid, IN LPCSTR szDllPath)```
 	
 6. InjectWxWorkMultiOpen
 
@@ -76,7 +76,7 @@ dll文件有三个，分别是WxWorkHelper_3.0.14.1205.dll、WxWorkLoader_x86.dl
 
 	函数定义：
 
-	`DWORD __stdcall InjectWxWorkMultiOpen(IN LPCSTR szDllPath, IN LPCSTR szWxWorkExePath);`
+	```DWORD __stdcall InjectWxWorkMultiOpen(IN LPCSTR szDllPath, IN LPCSTR szWxWorkExePath)```
 
 	
 7. SendWxWorkData
@@ -85,7 +85,7 @@ dll文件有三个，分别是WxWorkHelper_3.0.14.1205.dll、WxWorkLoader_x86.dl
 	
     函数定义：
 
-	` BOOL  SendWxWorkData(IN CONNID dwClientId, IN LPCSTR szJsonData);`
+	```BOOL  SendWxWorkData(IN CONNID dwClientId, IN LPCSTR szJsonData)```
 	
 8. DestroyWxWork
 
@@ -93,6 +93,6 @@ dll文件有三个，分别是WxWorkHelper_3.0.14.1205.dll、WxWorkLoader_x86.dl
 
 	函数定义：
 
-	`BOOL  DestroyWxWork();`
+	```BOOL  DestroyWxWork()```
 	
     
