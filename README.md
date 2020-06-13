@@ -14,17 +14,14 @@ wxwork_pc_api 使用HOOK技术将核心功能封装成dll，并提供简易的�
 目前支持的企业微信PC版本是3.0.14.1205, 使用api前，先这里下载并安装[WXWork_3.0.14.1205.exe](https://pan.baidu.com/s/1_AxfIGBEeKoEzItMKAiSUQ)  提取码：8fnk
 
 
-帮助&支持
--------------------------
-点击链接加入群聊[WxWorkApi交流群: 970725471](https://jq.qq.com/?_wv=1027&k=yHicylyC)
-
-<img src="./doc/qqgroup.jpg" height="300" />
-
 
 文档
 ----------------------------
+- [DLL接口介绍](doc/dll.md)
+- [Python调用介绍](doc/python.md)
 
-正在补充，具体使用可以暂时参考samples/python/demo.py
+
+正在补充，具体使用可以暂时参考samples/python/demo.py, 如下是python封装后的调用
 
 ```python
 import wxwork
@@ -74,3 +71,10 @@ if __name__ == "__main__":
         time.sleep(0.5)
 
 ```
+
+
+帮助&支持
+-------------------------
+点击链接加入群聊[WxWorkApi交流群: 970725471](https://jq.qq.com/?_wv=1027&k=yHicylyC)
+
+<img src="./doc/qqgroup.jpg" height="300" />
