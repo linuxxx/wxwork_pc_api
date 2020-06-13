@@ -21,7 +21,7 @@ wxwork_pc_api 使用HOOK技术将核心功能封装成dll，并提供简易的�
 - [Python调用介绍](doc/python.md)
 
 
-正在补充，具体使用可以暂时参考samples/python/demo.py, 如下是python封装后的调用
+文档正在补充，具体使用可以暂时参考samples/python/demo.py, 如下是python封装后的调用
 
 ```python
 import wxwork
