@@ -39,7 +39,7 @@ wxwork_pc_api 使用HOOK技术将核心功能封装成dll，并提供简易的�
 文档
 ----------------------------
 - [DLL接口介绍](doc/dll.md)
-- [API接口参数](doc/api.md)
+- [API接口参数](https://www.showdoc.cc/868510429078104)
 - [Python调用介绍](doc/python.md)
 
 

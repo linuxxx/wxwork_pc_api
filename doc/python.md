@@ -1,6 +1,6 @@
 # Python调用介绍
 
-实际上对[dll接口](dll.md)进行封装， 具体的json参数可以看[API文档](api.md)
+实际上对[dll接口](dll.md)进行封装， 具体的json参数可以看[API文档](https://www.showdoc.cc/868510429078104)
 
 # 快速上手
 
