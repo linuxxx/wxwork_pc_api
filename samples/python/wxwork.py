@@ -181,6 +181,10 @@ class WxWorkManager:
         return self.WXLOADER.InjectWxWorkPid(wxwork_pid, c_string(self.wxhelper_dll_path))
 
     @REQUIRE_WXLOADER
+    def close_manager():
+        return self.WXLOADER.DestroyWxWork()
+
+    @REQUIRE_WXLOADER
     def send_message(self, client_id, message_type, params):
         send_data = {
             'type': message_type,
