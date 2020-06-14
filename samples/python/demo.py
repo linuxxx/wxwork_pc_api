@@ -30,7 +30,7 @@ class EchoBot(wxwork.CallbackHandler):
 
         # 如果是文本消息，就回复一条消息
         if message_type == MessageType.MT_RECV_TEXT_MSG:
-            reply_content = '😂😂😂你发过来的消息是：{0}'.format(message_data['content'])
+            reply_content = u'😂😂😂你发过来的消息是：{0}'.format(message_data['content'])
             time.sleep(2)
             wxwork_manager.send_text(client_id, message_data['conversation_id'], reply_content)
 

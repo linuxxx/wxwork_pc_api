@@ -110,15 +110,16 @@ def wxwork_close_callback(client_id):
 
 
 class REQUIRE_WXLOADER:   
-    def __init__(self, func):
-        self.func = func
+    def __call__(self, func):
         
-    def __get__(self, obj, cls):    
+        @wraps(func)
         def wrapper(*args, **kwargs):
+            obj, args = args[0], args[1:]
             if obj.WXLOADER is not None:
-                return self.func(obj, *args, **kwargs)
+                
+                return func(obj, *args, **kwargs)
             else:
-                logger.error("WxWorkApi未初始化或初始化失败")
+                logger.error("WxWorkApi init failed")
         return wrapper
 
 
@@ -139,7 +140,7 @@ class WxWorkManager:
         wxwork_loader_path = os.path.realpath(wxwork_loader_path)
 
         if not os.path.exists(wxwork_loader_path):
-            logger.error('libs目录错误，或dll文件不存在')
+            logger.error('libs path error or WxWorkLoader not exist')
             return  
 
         self.WXLOADER = WinDLL(wxwork_loader_path)  
@@ -152,39 +153,39 @@ class WxWorkManager:
 
         self.wxhelper_dll_path = '{0}/WxWorkHelper_{1}.dll'.format(libs_path, self.get_user_wxwork_version())
         if not os.path.exists(self.wxhelper_dll_path):
-            logger.error('lib文件：%s不存在', self.wxhelper_dll_path);
+            logger.error('lib file：%s not exist', self.wxhelper_dll_path);
             return
             
         if  wxwork_exe_path != '' and not os.path.exists(wxwork_exe_path):
-            logger.warning('WXWork.exe路径是否设置正确?')
+            logger.warning('WXWork.exe is the path set correctly?')
 
         self.wxwork_exe_path = wxwork_exe_path
 
     def add_callback_handler(self, callback_handler):
         add_callback_handler(callback_handler)
           
-    @REQUIRE_WXLOADER
+    @REQUIRE_WXLOADER()
     def get_user_wxwork_version(self):
         out = create_string_buffer(20)
         self.WXLOADER.GetUserWxWorkVersion(out)
         return out.value.decode('utf-8')
     
-    @REQUIRE_WXLOADER
+    @REQUIRE_WXLOADER()
     def manager_wxwork(self, smart=True):
         if smart:
             return self.WXLOADER.InjectWxWork(c_string(self.wxhelper_dll_path), c_string(self.wxwork_exe_path))
         else:
             return self.WXLOADER.InjectWxWorkMultiOpen(c_string(self.wxhelper_dll_path), c_string(self.wxwork_exe_path))
     
-    @REQUIRE_WXLOADER
+    @REQUIRE_WXLOADER()
     def manager_wxwork_by_pid(self, wxwork_pid):
         return self.WXLOADER.InjectWxWorkPid(wxwork_pid, c_string(self.wxhelper_dll_path))
 
-    @REQUIRE_WXLOADER
+    @REQUIRE_WXLOADER()
     def close_manager():
         return self.WXLOADER.DestroyWxWork()
 
-    @REQUIRE_WXLOADER
+    @REQUIRE_WXLOADER()
     def send_message(self, client_id, message_type, params):
         send_data = {
             'type': message_type,
