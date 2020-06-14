@@ -55,9 +55,10 @@ _GLOBAL_CLOSE_CALLBACK_LIST = []
 
 def CONNECT_CALLBACK(in_class=False):
     def decorator(f):
-        wraps(f)
-        f._wx_connect_handled = True
-        if not in_class:
+        wraps(f)   
+        if in_class:
+            f._wx_connect_handled = True
+        else:
             _GLOBAL_CONNECT_CALLBACK_LIST.append(f)
         return f
     return decorator
@@ -65,17 +66,19 @@ def CONNECT_CALLBACK(in_class=False):
 def RECV_CALLBACK(in_class=False):
     def decorator(f):
         wraps(f)
-        f._wx_recv_handled = True
-        if not in_class:
-            _GLOBAL_RECV_CALLBACK_LIST.append(f)  
+        if in_class:
+            f._wx_recv_handled = True
+        else:
+            _GLOBAL_RECV_CALLBACK_LIST.append(f) 
         return f         
     return decorator
 
 def CLOSE_CALLBACK(in_class=False):
     def decorator(f):
-        wraps(f)
-        f._wx_close_handled = True
-        if not in_class:
+        wraps(f)        
+        if in_class:
+            f._wx_close_handled = True
+        else:
             _GLOBAL_CLOSE_CALLBACK_LIST.append(f)  
         return f         
     return decorator  
