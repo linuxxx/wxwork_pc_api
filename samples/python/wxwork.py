@@ -185,7 +185,7 @@ class WxWorkManager:
         return self.WXLOADER.InjectWxWorkPid(wxwork_pid, c_string(self.wxhelper_dll_path))
 
     @REQUIRE_WXLOADER()
-    def close_manager():
+    def close_manager(self):
         return self.WXLOADER.DestroyWxWork()
 
     @REQUIRE_WXLOADER()
